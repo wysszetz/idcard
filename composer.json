@@ -1,0 +1,17 @@
+{
+    "name": "wangyi/idcard",
+    "description": "解读身份证号码信息",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "HowieBird",
+            "email": "76828528@qq.com"
+        }
+    ],
+    "require": {},
+    "autholod":{
+        "psr-4":{
+            "IDCard\\":"src/"
+        }
+    }
+}
