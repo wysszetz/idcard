@@ -22,7 +22,7 @@ class IdcardArea
     {
         $this->init = $init;
         $this->idcard = $this->init->getParams('idcard');
-        $this->hometownArr = require_once dirname(__FILE__) . '../config/hometown.php';
+        $this->hometownArr = require dirname(__FILE__) . '/../config/hometown.php';
     }
 
     /**

@@ -29,3 +29,60 @@
  ```
 
  #### 初始化
+  ```php
+  use \Idcard\IdcardInit as Idcard;
+  ...
+  ...
+ 
+      $idcard = new Idcard('11xxxxxxxxxxxxxxxx');
+ 
+  ...
+  ```
+ 
+  OR
+ 
+  ```php
+  $client = new \Idcard\IdcardInit('11xxxxxxxxxxxxxxxx');
+  ```
+  ### 检查身份证是否生效
+  ```php
+    $check = $idcard->check()->check();
+  ```
+  ### 判端性别
+  ```php
+    $sex = $idcard->getSex()->getSex();
+  ```
+  ### 获取年龄、出生年月、生肖、星座
+  ```php
+    //年龄
+    $age = $idcard->getAge()->getAge();
+    //出生年月日，默认返回格式为Y-m-d,可自定义
+    $birthday = $idcard->getAge()->getBirthday('Y年m月d日');
+    //出生年份
+    $year = $idcard->getAge()->getBirthdayYear();
+    //出生月份
+    $month = $idcard->getAge()->getBirthdayMonth();
+    //出生日
+    $day = $idcard->getAge()->getBirthdayDay();
+    //生肖
+    $ChineseZodiac = $idcard->getAge()->getChineseZodiac();
+    //星座
+    $Constellation = $idcard->getAge()->getConstellation();
+  ```
+  ### 获取地域信息
+  ```php
+    //获取省份：河北省
+    $province = $idcard->getArea()->getProvince();
+    //获取城市：河北省石家庄市
+    $city = $idcard->getArea()->getCity();
+    //获取详细地址信息
+    $area = $idcard->getArea()->getArea();
+  ```
+   ## Contributing
+  
+   Bug reports and pull requests are welcome on GitHub at https://github.com/HowieBird/idcard
+  
+   ## License
+  
+   The library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+ 
