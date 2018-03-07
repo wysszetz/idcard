@@ -1,5 +1,5 @@
 {
-    "name": "HowieBird/idcard",
+    "name": "wangyi/idcard",
     "description": "解读身份证号码信息",
     "type": "library",
     "homepage": "https://github.com/HowieBird/idcard",
@@ -7,8 +7,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "HowieBird",
-            "email": "76828528@qq.com"
+            "name": "王毅",
+            "email": "wysszetz@163.com"
         }
     ],
     "minimum-stability": "stable",
