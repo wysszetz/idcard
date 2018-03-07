@@ -1,6 +1,9 @@
 {
-    "name": "wangyi/idcard",
+    "name": "HowieBird/idcard",
     "description": "解读身份证号码信息",
+    "type": "library",
+    "homepage": "https://github.com/HowieBird/idcard",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
@@ -8,10 +11,16 @@
             "email": "76828528@qq.com"
         }
     ],
-    "require": {},
+    "minimum-stability": "stable",
+    "require": {
+      "php": ">=5.3.0"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "~4.0"
+    },
     "autholod":{
         "psr-4":{
-            "IDCard\\":"src/"
+            "Idcard\\":"src/Idcard"
         }
     }
 }
