@@ -6,7 +6,7 @@
  * Time: 下午4:00
  */
 
-namespace idcard\explanation;
+namespace Idcard\explanation;
 
 
 class IdcardSex

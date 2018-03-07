@@ -6,7 +6,7 @@
  * Time: 下午3:46
  */
 
-namespace idcard\explanation;
+namespace Idcard\explanation;
 
 
 class IdcardCheck

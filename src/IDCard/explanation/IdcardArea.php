@@ -6,7 +6,7 @@
  * Time: 下午4:30
  */
 
-namespace idcard\explanation;
+namespace Idcard\explanation;
 
 
 class IdcardArea

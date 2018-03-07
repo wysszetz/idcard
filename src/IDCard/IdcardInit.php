@@ -6,13 +6,14 @@
  * Time: 下午3:39
  */
 
-namespace idcard;
+namespace Idcard;
 
 
-use idcard\exceptions\IdcardExceptions;
-use idcard\explanation\IdcardAge;
-use idcard\explanation\IdcardCheck;
-use idcard\explanation\IdcardSex;
+use Idcard\exceptions\IdcardExceptions;
+use Idcard\explanation\IdcardAge;
+use Idcard\explanation\IdcardArea;
+use Idcard\explanation\IdcardCheck;
+use Idcard\explanation\IdcardSex;
 
 class IdcardInit
 {
@@ -54,20 +55,44 @@ class IdcardInit
     /**
      * 解读身份证年龄、出生年月等信息
      * @return IdcardAge
+     * @throws IdcardExceptions
      */
     public function getAge()
     {
-        $this->check()->check();
-        return new IdcardAge($this);
+        if ($this->check()->check()) {
+            return new IdcardAge($this);
+        } else {
+            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
+        }
+
     }
 
     /**
      * 解读身份证性别
      * @return IdcardSex
+     * @throws IdcardExceptions
      */
     public function getSex()
     {
-        $this->check()->check();
-        return new IdcardSex($this);
+        if ($this->check()->check()) {
+            return new IdcardSex($this);
+        } else {
+            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
+        }
+
+    }
+
+    /**
+     * 解析地域
+     * @return IdcardArea
+     * @throws IdcardExceptions
+     */
+    public function getArea()
+    {
+        if ($this->check()->check()) {
+            return new IdcardArea($this);
+        } else {
+            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
+        }
     }
 }

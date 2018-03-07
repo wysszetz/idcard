@@ -6,7 +6,7 @@
  * Time: 下午3:52
  */
 
-namespace idcard\explanation;
+namespace Idcard\explanation;
 
 
 class IdcardAge

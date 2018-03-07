@@ -19,7 +19,7 @@
     },
     "autholod":{
         "psr-4":{
-            "Idcard\\":"src/Idcard"
+            "Idcard\\":"src/IDCard"
         }
     }
 }

@@ -6,7 +6,7 @@
  * Time: 下午3:40
  */
 
-namespace idcard\exceptions;
+namespace Idcard\exceptions;
 
 
 use Throwable;
@@ -21,3 +21,5 @@ class IdcardExceptions extends \Exception
 
 define('ERR_PARAMS', 10001);
 define('ERR_PARAMS_CONTENT', '参数异常');
+define('ERR_CHECK', 10002);
+define('ERR_CHECK_CONTENT', '身份证检验无效');
