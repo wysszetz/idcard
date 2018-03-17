@@ -1,26 +1,34 @@
 {
-    "name": "wangyi/idcard",
-    "description": "解读身份证号码信息",
-    "type": "library",
-    "homepage": "https://github.com/HowieBird/idcard",
-    "version": "1.0.2",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "王毅",
-            "email": "wysszetz@163.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-      "php": ">=5.3.0"
-    },
-    "require-dev": {
-      "phpunit/phpunit": "~4.0"
-    },
-    "autholod":{
-        "psr-4":{
-            "Idcard\\":"src/IDCard"
-        }
+  "name": "PerterWan/idcard",
+  "description": "解读身份证号码信息",
+  "type": "library",
+  "homepage": "https://github.com/PerterWan/idcard",
+  "version": "1.0.2",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "PerterWan",
+      "email": "wysszetz@163.com"
     }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7"
+  },
+  "autholod": {
+    "psr-4": {
+      "Idcard\\": "src/IDCard"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Idcard\\Tests\\": "tests/"
+    },
+    "scripts": {
+      "test": "vendor/bin/phpunit"
+    }
+  }
 }
