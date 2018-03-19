@@ -30,6 +30,11 @@ class IdcardInit
         if (empty($idcard)) {
             throw new IdcardExceptions(ERR_PARAMS_CONTENT, ERR_PARAMS);
         }
+        //判断身份证号码长度是否为15位或者18位
+        $length = strlen($idcard);
+        if ($length != 15 || $length != 18) {
+            throw new IdcardExceptions(ERR_IDCARD_LENGTH_CONTENT, ERR_IDCARD_LENGTH);
+        }
         $this->idcard = $idcard;
     }
 
@@ -41,6 +46,34 @@ class IdcardInit
     public function getParams($key)
     {
         return $this->$key;
+    }
+
+    /**
+     * 方法入口集成
+     * @param $scenes
+     * @return IdcardAge|IdcardArea|IdcardCheck|IdcardSex
+     * @throws IdcardExceptions
+     */
+    public function getPlat($scenes)
+    {
+        switch ($scenes) {
+            case 'check':
+                $obj = $this->check();
+                break;
+            case 'birth':
+                $obj = $this->getAge();
+                break;
+            case 'area':
+                $obj = $this->getArea();
+                break;
+            case 'sex':
+                $obj = $this->getSex();
+                break;
+            default:
+                throw new IdcardExceptions(ERR_PLAT_CONTENT, ERR_PLAT);
+                break;
+        }
+        return $obj;
     }
 
     /**
@@ -94,5 +127,6 @@ class IdcardInit
         } else {
             throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
         }
+
     }
 }

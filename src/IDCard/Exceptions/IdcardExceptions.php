@@ -23,3 +23,7 @@ define('ERR_PARAMS', 10001);
 define('ERR_PARAMS_CONTENT', '参数异常');
 define('ERR_CHECK', 10002);
 define('ERR_CHECK_CONTENT', '身份证检验无效');
+define('ERR_IDCARD_LENGTH', 10003);
+define('ERR_IDCARD_LENGTH_CONTENT', '身份证号码长度异常，请输入15位或者18位长度');
+define('ERR_PLAT', 10004);
+define('ERR_PLAT_CONTENT', '请确认获取身份证信息解读场景');
