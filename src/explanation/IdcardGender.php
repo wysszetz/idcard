@@ -23,11 +23,13 @@ class IdcardGender
 
     /**
      * 判断性别
+     * @param string $male 默认 男
+     * @param string $female 默认 女
      * @return string
      */
-    public function getGender()
+    public function getGender($male = '男', $female = '女')
     {
         $sexint = (int)substr($this->idcard, 16, 1);
-        return $sexint % 2 === 0 ? '女' : '男';
+        return $sexint % 2 === 0 ? $female : $male;
     }
 }

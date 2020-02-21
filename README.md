@@ -9,11 +9,13 @@
 
  - 在项目中的 `composer.json` 文件中添加 Organize 依赖：
 
- ```json
- "require": {
+```json
+{
+  "require": {
      "peter-wan/idcard": "dev-master"
- }
- ```
+  }
+}
+```
 
  - 执行 `$ php composer.phar install` 或 `$ composer install` 进行安装。
 
@@ -44,13 +46,14 @@
   ```php
   $idcardObj = new \Idcard\IdcardInit('11xxxxxxxxxxxxxxxx');
   ```
-  ### 检查身份证是否生效
+  ### 检查身份证是否生效，生效返回TRUE，失效情况下在初始化阶段抛出异常
   ```php
     $check = $idcardObj->getParams("check");
   ```
   ### 判端性别
   ```php
-    $gender = $idcardObj->gender()->getGender();
+    //可自定义返回性别值
+    $gender = $idcardObj->gender()->getGender($male = '男', $female = '女');
   ```
   ### 获取年龄、出生年月、生肖、星座
   ```php
@@ -79,9 +82,16 @@
     //获取详细地址信息
     $area = $idcard->getArea()->getArea();
   ```
+  ### 身份证工具
+  ```php
+      //补全15位身份证号码
+      $newIdcard = $idcardObj->tools()->get18LengthFrom15Length();
+      //隐藏位数 1333***********1111 可自定义隐藏替代字符，左右值为非负整数，$left + $right <= 10 & >=0
+      $format = $idcardObj->tools()->getIdcardFormat($format = '*', $left = 4, $right = 4);
+    ```
    ## Contributing
   
-   Bug reports and pull requests are welcome on GitHub at https://github.com/HowieBird/idcard
+   Bug reports and pull requests are welcome on GitHub at https://github.com/PerterWan/idcard
   
    ## License
   

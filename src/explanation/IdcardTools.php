@@ -37,4 +37,18 @@ class IdcardTools
             return $this->idcard;
         }
     }
+
+    public function getIdcardFormat($format = '*', $left = 4, $right = 4)
+    {
+        $left = intval($left) >= 0 ? $left : 4;
+        $right = intval($right) >= 0 ? $right : 4;
+
+        if (($left + $right) > 18)
+            $left = $right = 4;
+
+
+        $sublen = mb_strlen($this->idcard, 'UTF-8') - $left - $right;
+        return mb_substr($this->idcard, 0, $left, 'UTF-8') . str_repeat($format, $sublen) . mb_substr($this->idcard, $sublen + $left, null, 'UTF-8');
+    }
+
 }
