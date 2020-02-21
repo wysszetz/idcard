@@ -8,18 +8,17 @@
 
 namespace Idcard\Tests;
 
+use Idcard\IdcardInit;
 use PHPUnit\Framework\TestCase;
 
 class IdcardCheckTest extends TestCase
 {
-    protected function setUp()
+    public function testCheck()
     {
-        global $idcard;
-    }
-
-    function testCheck()
-    {
-//        $idcard->check
+        $idcard = '130102199003078697';
+        $idcardObj = new IdcardInit($idcard);
+        $this->assertTrue($idcardObj->getParams('check') ? true : false);
+        $this->assertEquals($idcard, $idcardObj->getParams('idcard'));
     }
 
 
