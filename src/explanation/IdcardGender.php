@@ -9,7 +9,7 @@
 namespace Idcard\explanation;
 
 
-class IdcardSex
+class IdcardGender
 {
     private $init;
 
@@ -25,7 +25,7 @@ class IdcardSex
      * 判断性别
      * @return string
      */
-    public function getSex()
+    public function getGender()
     {
         $sexint = (int)substr($this->idcard, 16, 1);
         return $sexint % 2 === 0 ? '女' : '男';

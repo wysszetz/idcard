@@ -3,7 +3,7 @@
   "description": "根据提供的身份证号码，检测身份证号码是或否正确，以及解读身份证号码中所包含的年龄、地域等信息",
   "type": "library",
   "homepage": "https://github.com/PerterWan/idcard",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "authors": [
     {

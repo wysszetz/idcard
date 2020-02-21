@@ -34,7 +34,7 @@
   ...
   ...
  
-      $idcard = new Idcard('11xxxxxxxxxxxxxxxx');
+      $idcardObj = new Idcard('11xxxxxxxxxxxxxxxx');
  
   ...
   ```
@@ -42,32 +42,33 @@
   OR
  
   ```php
-  $client = new \Idcard\IdcardInit('11xxxxxxxxxxxxxxxx');
+  $idcardObj = new \Idcard\IdcardInit('11xxxxxxxxxxxxxxxx');
   ```
   ### 检查身份证是否生效
   ```php
-    $check = $idcard->check()->check();
+    $check = $idcardObj->getParams("check");
   ```
   ### 判端性别
   ```php
-    $sex = $idcard->getSex()->getSex();
+    $gender = $idcardObj->gender()->getGender();
   ```
   ### 获取年龄、出生年月、生肖、星座
   ```php
+    $birthdayObj = $idcardObj->birth()->getIdCardBirthInfo();
     //年龄
-    $age = $idcard->getAge()->getAge();
-    //出生年月日，默认返回格式为Y-m-d,可自定义
-    $birthday = $idcard->getAge()->getBirthday('Y年m月d日');
+    $age = $birthdayObj->age;
+    //出生年月日
+    $birthday = $birthdayObj->birthday;
     //出生年份
-    $year = $idcard->getAge()->getBirthdayYear();
+    $year = $birthdayObj->birthday_year;
     //出生月份
-    $month = $idcard->getAge()->getBirthdayMonth();
+    $month = $birthdayObj->birthday_month;
     //出生日
-    $day = $idcard->getAge()->getBirthdayDay();
+    $day = $birthdayObj->birthday_day();
     //生肖
-    $ChineseZodiac = $idcard->getAge()->getChineseZodiac();
+    $ChineseZodiac = $birthdayObj->chinese_zodiac();
     //星座
-    $Constellation = $idcard->getAge()->getConstellation();
+    $Constellation = $birthdayObj->constellation;
   ```
   ### 获取地域信息
   ```php

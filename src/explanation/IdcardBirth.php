@@ -9,11 +9,18 @@
 namespace Idcard\explanation;
 
 
-class IdcardAge
+class IdcardBirth
 {
     private $init;
+    public $idcard;
 
-    private $idcard = '';
+    public $age;
+    public $birthday;
+    public $birthday_year;
+    public $birthday_month;
+    public $birthday_day;
+    public $chinese_zodiac;
+    public $constellation;
 
     public function __construct($init)
     {
@@ -21,11 +28,23 @@ class IdcardAge
         $this->idcard = $this->init->getParams('idcard');
     }
 
+    public function getIdCardBirthInfo()
+    {
+        $this->getAge();
+        $this->getBirthday();
+        $this->getBirthdayYear();
+        $this->getBirthdayMonth();
+        $this->getBirthdayDay();
+        $this->getChineseZodiac();
+        $this->getConstellation();
+        return $this;
+    }
+
     /**
      * 获取年龄
      * @return bool|false|int|string
      */
-    public function getAge()
+    private function getAge()
     {
         $birth_year = substr($this->idcard, 6, 4);
         $year = date('Y');
@@ -38,53 +57,60 @@ class IdcardAge
             $birth_day = substr($this->idcard, 12, 2);
             $day = date('d');
             if ($birth_day > $day) {
-                $age = $diff_year - 1;
+                $this->age = $diff_year - 1;
             } else {
-                $age = $diff_year;
+                $this->age = $diff_year;
             }
         } else if ($month > $birth_month) {
-            $age = $diff_year;
+            $this->age = $diff_year;
         } else if ($month < $birth_month) {
-            $age = $diff_year - 1;
+            $this->age = $diff_year - 1;
         }
-        return $age;
     }
 
     /**
      * 获取生日
-     * @param string $format
      * @return false|string
      */
-    public function getBirthday($format = 'Y-m-d')
+    private function getBirthday()
     {
-        return date($format, strtotime($this->getBirthdayString()));
+        $this->birthday = date('Y-m-d', strtotime($this->getBirthdayString()));
     }
 
     /**
      * 获取出生年
      * @return false|string
      */
-    public function getBirthdayYear()
+    private function getBirthdayYear()
     {
-        return $this->getBirthday('Y');
+        if ($this->birthday)
+            $this->birthday_year = date('Y', strtotime($this->getBirthdayString()));
+        else
+            $this->birthday_year = '0000';
     }
 
     /**
      * 获取出生月
      * @return false|string
      */
-    public function getBirthdayMonth()
+    private function getBirthdayMonth()
     {
-        return $this->getBirthday('m');
+        if ($this->birthday)
+            $this->birthday_month = date('m', strtotime($this->getBirthdayString()));
+        else
+            $this->birthday_month = '00';
     }
 
     /**
      * 获取出生日
      * @return false|string
      */
-    public function getBirthdayDay()
+    private function getBirthdayDay()
     {
-        return $this->getBirthday('d');
+        if ($this->birthday)
+            $this->birthday_day = date('d', strtotime($this->getBirthdayString()));
+        else
+            $this->birthday_day = '00';
     }
 
     /**
@@ -100,7 +126,7 @@ class IdcardAge
      * 获取生肖
      * @return string
      */
-    public function getChineseZodiac()
+    private function getChineseZodiac()
     {
         $start = 1901;
         $end = $end = (int)substr($this->idcard, 6, 4);
@@ -142,14 +168,14 @@ class IdcardAge
         if ($x == 2 || $x == -10) {
             $value = "猪";
         }
-        return $value;
+        $this->chinese_zodiac = $value;
     }
 
     /**
      * 获取星座
      * @return string
      */
-    public function getConstellation()
+    private function getConstellation()
     {
         $bir = substr($this->idcard, 10, 4);
         $month = (int)substr($bir, 0, 2);
@@ -180,6 +206,6 @@ class IdcardAge
         } else if (($month == 12 && $day > 21) || ($month == 1 && $day <= 20)) {
             $strValue = "魔羯座";
         }
-        return $strValue;
+        $this->constellation = $strValue;
     }
 }

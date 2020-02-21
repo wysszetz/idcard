@@ -10,15 +10,19 @@ namespace Idcard;
 
 
 use Idcard\exceptions\IdcardExceptions;
-use Idcard\explanation\IdcardAge;
+use Idcard\explanation\IdcardBirth;
 use Idcard\explanation\IdcardArea;
 use Idcard\explanation\IdcardCheck;
-use Idcard\explanation\IdcardSex;
+use Idcard\explanation\IdcardGender;
+use Idcard\explanation\IdcardTools;
 
 class IdcardInit
 {
     //初始化参数：身份证号码
     private $idcard = '';
+
+    //检查身份证号是否正确
+    private $check = false;
 
     /**
      * IdcardInit constructor.
@@ -36,7 +40,51 @@ class IdcardInit
             throw new IdcardExceptions(ERR_IDCARD_LENGTH_CONTENT, ERR_IDCARD_LENGTH);
         }
         $this->idcard = $idcard;
+
+        //对身份证号码进行检测判断
+        $check = new IdcardCheck($this);
+        $this->check = $check->check();
+        if (!$this->check) {
+            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
+        }
     }
+
+    /**
+     * 获取生日信息
+     * @return IdcardBirth
+     */
+    public function birth()
+    {
+        return new IdcardBirth($this);
+    }
+
+    /**
+     * 获取地域信息
+     * @return IdcardArea
+     */
+    public function area()
+    {
+        return new IdcardArea($this);
+    }
+
+    /**
+     * 获取性别信息
+     * @return IdcardGender
+     */
+    public function gender()
+    {
+        return new IdcardGender($this);
+    }
+
+    /**
+     * 特殊工具
+     * @return IdcardTools
+     */
+    public function tools()
+    {
+        return new IdcardTools($this);
+    }
+
 
     /**
      * 获取参数
@@ -46,87 +94,5 @@ class IdcardInit
     public function getParams($key)
     {
         return $this->$key;
-    }
-
-    /**
-     * 方法入口集成
-     * @param $scenes
-     * @return IdcardAge|IdcardArea|IdcardCheck|IdcardSex
-     * @throws IdcardExceptions
-     */
-    public function getPlat($scenes)
-    {
-        switch ($scenes) {
-            case 'check':
-                $obj = $this->check();
-                break;
-            case 'birth':
-                $obj = $this->getAge();
-                break;
-            case 'area':
-                $obj = $this->getArea();
-                break;
-            case 'sex':
-                $obj = $this->getSex();
-                break;
-            default:
-                throw new IdcardExceptions(ERR_PLAT_CONTENT, ERR_PLAT);
-                break;
-        }
-        return $obj;
-    }
-
-    /**
-     * 检查身份证号码是否正确
-     * @return IdcardCheck
-     */
-    public function check()
-    {
-        return new IdcardCheck($this);
-    }
-
-    /**
-     * 解读身份证年龄、出生年月等信息
-     * @return IdcardAge
-     * @throws IdcardExceptions
-     */
-    public function getAge()
-    {
-        if ($this->check()->check()) {
-            return new IdcardAge($this);
-        } else {
-            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
-        }
-
-    }
-
-    /**
-     * 解读身份证性别
-     * @return IdcardSex
-     * @throws IdcardExceptions
-     */
-    public function getSex()
-    {
-        if ($this->check()->check()) {
-            return new IdcardSex($this);
-        } else {
-            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
-        }
-
-    }
-
-    /**
-     * 解析地域
-     * @return IdcardArea
-     * @throws IdcardExceptions
-     */
-    public function getArea()
-    {
-        if ($this->check()->check()) {
-            return new IdcardArea($this);
-        } else {
-            throw new IdcardExceptions(ERR_CHECK_CONTENT, ERR_CHECK);
-        }
-
     }
 }
