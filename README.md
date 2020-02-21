@@ -88,7 +88,8 @@
       $newIdcard = $idcardObj->tools()->get18LengthFrom15Length();
       //隐藏位数 1333***********1111 可自定义隐藏替代字符，左右值为非负整数，$left + $right <= 10 & >=0
       $format = $idcardObj->tools()->getIdcardFormat($format = '*', $left = 4, $right = 4);
-    ```
+  ```
+
    ## Contributing
   
    Bug reports and pull requests are welcome on GitHub at https://github.com/PerterWan/idcard
