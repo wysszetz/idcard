@@ -11,7 +11,7 @@
 
  ```json
  "require": {
-     "wangyi/idcard": "dev-master"
+     "peter-wan/idcard": "dev-master"
  }
  ```
 
