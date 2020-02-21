@@ -32,7 +32,7 @@ class IdcardInit
         }
         //判断身份证号码长度是否为15位或者18位
         $length = strlen($idcard);
-        if ($length != 15 || $length != 18) {
+        if ($length != 15 && $length != 18) {
             throw new IdcardExceptions(ERR_IDCARD_LENGTH_CONTENT, ERR_IDCARD_LENGTH);
         }
         $this->idcard = $idcard;

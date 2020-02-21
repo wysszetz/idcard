@@ -1,9 +1,9 @@
 {
-  "name": "peter-wan/idcard",
-  "description": "解读身份证号码信息",
+  "name": "toolset/Idcard",
+  "description": "根据提供的身份证号码，检测身份证号码是或否正确，以及解读身份证号码中所包含的年龄、地域等信息",
   "type": "library",
   "homepage": "https://github.com/PerterWan/idcard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "authors": [
     {
@@ -18,17 +18,17 @@
   "require-dev": {
     "phpunit/phpunit": "5.7"
   },
-  "autholod": {
-    "psr-4": {
-      "Idcard\\": "src/IDCard"
-    }
-  },
   "autoload-dev": {
     "psr-4": {
       "Idcard\\Tests\\": "tests/"
     },
     "scripts": {
       "test": "vendor/bin/phpunit"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Idcard\\": "src/"
     }
   }
 }
