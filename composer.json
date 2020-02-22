@@ -1,9 +1,15 @@
 {
-  "name": "pwtool/Idcard",
+  "name": "peter-wan/idcard",
   "description": "根据提供的身份证号码，检测身份证号码是或否正确，以及解读身份证号码中所包含的年龄、地域等信息",
+  "version": "1.0.6",
   "type": "library",
+  "keywords": [
+    "idcard",
+    "china",
+    "age",
+    "area"
+  ],
   "homepage": "https://github.com/PerterWan/idcard",
-  "version": "1.0.5",
   "license": "MIT",
   "authors": [
     {
